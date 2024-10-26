@@ -16,7 +16,7 @@ export default function Home() {
       const sections = document.querySelectorAll('section');
       sections.forEach((section, index) => {
         const rect = section.getBoundingClientRect();
-        if (rect.top >= -100 && rect.top <= 100) {
+        if (rect.top >= -1 && rect.top <= 1) {
           setCurrentSection(index);
         }
       });
