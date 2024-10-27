@@ -13,51 +13,28 @@ export default function Home() {
   const [animationStep, setAnimationStep] = useState(0);
   const [showRealLogo, setShowRealLogo] = useState(false);
 
-  // Intersection Observer hooks for different sections
-  const { ref: logoRef, inView: logoInView } = useInView({
-    threshold: 0.5,
-    triggerOnce: true
-  });
-
-  const { ref: descriptionRef, inView: descriptionInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true
-  });
-
-  const { ref: profileRef, inView: profileInView } = useInView({
-    threshold: 0.3,
-    triggerOnce: true
-  });
-
-  const { ref: secondSectionRef, inView: secondSectionInView } = useInView({
-    threshold: 0.5,
-    triggerOnce: true
-  });
+  const { ref: logoRef, inView: logoInView } = useInView({ threshold: 0.5, triggerOnce: true });
+  const { ref: descriptionRef, inView: descriptionInView } = useInView({ threshold: 0.3, triggerOnce: true });
+  const { ref: profileRef, inView: profileInView } = useInView({ threshold: 0.3, triggerOnce: true });
+  const { ref: secondSectionRef, inView: secondSectionInView } = useInView({ threshold: 0.5, triggerOnce: true });
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
     window.addEventListener("resize", handleResize);
-    
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Updated logo animation sequence with transition to real logo
   useEffect(() => {
     if (logoInView) {
-      const timer1 = setTimeout(() => setAnimationStep(1), 500); // Star appears
-      const timer2 = setTimeout(() => setAnimationStep(2), 1000); // A appears
-      const timer3 = setTimeout(() => setAnimationStep(3), 1500); // Final animated logo state
+      const timer1 = setTimeout(() => setAnimationStep(1), 500);
+      const timer2 = setTimeout(() => setAnimationStep(2), 1000);
+      const timer3 = setTimeout(() => setAnimationStep(3), 1500);
       const timer4 = setTimeout(() => {
-        setAnimationStep(4); // Start fade out
-        setTimeout(() => setShowRealLogo(true), 300); // Show real logo after fade starts
+        setAnimationStep(4);
+        setTimeout(() => setShowRealLogo(true), 300);
       }, 2000);
-      
+
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
@@ -76,13 +53,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      {/* Ícones de redes sociais no topo direito */}
+      <nav className={styles.socialLinks}>
+        <a href="https://www.instagram.com/alineneryanc?igsh=aXhqdTV4MGFnMmR6" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <Instagram size={24} />
+        </a>
+        <a href="https://www.linkedin.com/in/aline-nery-anc/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <Linkedin size={24} />
+        </a>
+      </nav>
+
       <main className={styles.main}>
         <section className={styles.section}>
           <div className={styles.mainContent}>
-            {/* Logo Container */}
             <div ref={logoRef} className={styles.logoPic}>
               <div className={styles.logoContainer}>
-                {/* Animated Logo Elements */}
                 {!showRealLogo && (
                   <>
                     <svg
@@ -91,10 +76,7 @@ export default function Home() {
                       width={isMobile ? "100" : "200"}
                       height={isMobile ? "100" : "200"}
                     >
-                      <path
-                        d="M50 0 L61 35 L97 35 L68 57 L79 91 L50 70 L21 91 L32 57 L3 35 L39 35 Z"
-                        fill="#FF4500"
-                      />
+                      <path d="M50 0 L61 35 L97 35 L68 57 L79 91 L50 70 L21 91 L32 57 L3 35 L39 35 Z" fill="#FF4500" />
                     </svg>
 
                     <svg
@@ -103,17 +85,11 @@ export default function Home() {
                       width={isMobile ? "100" : "200"}
                       height={isMobile ? "100" : "200"}
                     >
-                      <path
-                        d="M10 80 L40 20 L70 80 M25 50 L55 50"
-                        stroke="#FF4500"
-                        strokeWidth="8"
-                        fill="none"
-                      />
+                      <path d="M10 80 L40 20 L70 80 M25 50 L55 50" stroke="#FF4500" strokeWidth="8" fill="none" />
                     </svg>
                   </>
                 )}
-                
-                {/* Real Logo */}
+
                 {showRealLogo && (
                   <Image
                     src="/alinelogo.png"
@@ -126,28 +102,24 @@ export default function Home() {
                 )}
               </div>
             </div>
-            
-            {/* Rest of the component remains the same */}
+
             <div className={styles.contentWrapper}>
               <div className={styles.textSection}>
-                <h1 
-                  ref={descriptionRef}
-                  className={`${styles.description} ${descriptionInView ? styles.visible : styles.hidden}`}
-                >
+                <h1 ref={descriptionRef} className={`${styles.description} ${descriptionInView ? styles.visible : styles.hidden}`}>
                   Excelência em criar experiências, conectar pessoas e transformar empresas
                 </h1>
                 <div className={styles.scrollIndicator}>
                   <div className={styles.arrow}>↓</div>
                 </div>
               </div>
-              
+
               <div ref={profileRef} className={styles.imageSection}>
                 <div className={`${styles.Oval} ${profileInView ? styles.visible : styles.hidden}`}></div>
-                <Image 
-                  src="/Aline1.png" 
-                  alt="Aline Nery" 
-                  width={isMobile ? 400 : 580} 
-                  height={isMobile ? 600 : 700} 
+                <Image
+                  src="/Aline1.png"
+                  alt="Aline Nery"
+                  width={isMobile ? 400 : 580}
+                  height={isMobile ? 600 : 700}
                   className={`${styles.profilePic} ${profileInView ? styles.visible : styles.hidden}`}
                   priority
                 />
@@ -157,12 +129,24 @@ export default function Home() {
         </section>
 
         <section className={styles.section}>
-          <div 
-            ref={secondSectionRef}
-            className={`${styles.secondSectionContent} ${secondSectionInView ? styles.visible : styles.hidden}`}
-          >
-            <h2>Quem é Aline?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <div ref={secondSectionRef} className={`${styles.secondSectionContent} ${secondSectionInView ? styles.visible : styles.hidden}`}>
+            <Image
+                    src="/Aline2.png"
+                    alt="Aline Nery Logo"
+                    width={isMobile ? 500 : 1000}
+                    height={isMobile ? 150 : 1500}
+                    className={`${styles.Aline2}`}
+                    priority
+                />
+            <h2 className={`${styles.Title1}`}>Quem é Aline?</h2>
+            <p className={`${styles.Paragraph}`}>
+  Comunicadora de perfil Executor, Aline Nery adquiriu ao longo de sua carreira como publicitária e empresária, larga experiência no relacionamento com empresários dos mais diversos segmentos.<br /><br />
+  Isso lhe gerou um networking de alta qualidade pois passou a ser uma referência de confiança no universo corporativo da região de Sete Lagoas/MG. Uma conexão indicada por Aline Nery acabava sendo aceita pois ela conseguia unir "quem quer comprar, com quem quer vender" e assim começou a Xcalada Empresarial, uma rodada de negócios com metodologia exclusiva All Play All com erro Zero. Já foram mais de 500 empresas conectadas e milhões de negócios fechados.<br /><br />
+  Exigente na qualidade do serviço que entrega e focada na experiência do seu usuário e cliente, Aline Nery realiza eventos corporativos personalizados como inaugurações, premiações, imersões, congressos, festivais.<br /><br />
+  Se você busca por Inovação, Organização, Tranquilidade e Assertividade você vai gostar dos serviços de Aline Nery Conexões e Negócios.
+</p>
+
+            
           </div>
         </section>
       </main>
