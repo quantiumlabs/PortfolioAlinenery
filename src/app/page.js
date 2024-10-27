@@ -130,8 +130,23 @@ export default function Home() {
 
         <section className={styles.section}>
           <div ref={secondSectionRef} className={`${styles.secondSectionContent} ${secondSectionInView ? styles.visible : styles.hidden}`}>
-            <h2>Quem é Aline?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <Image
+                    src="/Aline2.png"
+                    alt="Aline Nery Logo"
+                    width={isMobile ? 500 : 1000}
+                    height={isMobile ? 150 : 1500}
+                    className={`${styles.Aline2}`}
+                    priority
+                />
+            <h2 className={`${styles.Title1}`}>Quem é Aline?</h2>
+            <p className={`${styles.Paragraph}`}>
+  Comunicadora de perfil Executor, Aline Nery adquiriu ao longo de sua carreira como publicitária e empresária, larga experiência no relacionamento com empresários dos mais diversos segmentos.<br /><br />
+  Isso lhe gerou um networking de alta qualidade pois passou a ser uma referência de confiança no universo corporativo da região de Sete Lagoas/MG. Uma conexão indicada por Aline Nery acabava sendo aceita pois ela conseguia unir "quem quer comprar, com quem quer vender" e assim começou a Xcalada Empresarial, uma rodada de negócios com metodologia exclusiva All Play All com erro Zero. Já foram mais de 500 empresas conectadas e milhões de negócios fechados.<br /><br />
+  Exigente na qualidade do serviço que entrega e focada na experiência do seu usuário e cliente, Aline Nery realiza eventos corporativos personalizados como inaugurações, premiações, imersões, congressos, festivais.<br /><br />
+  Se você busca por Inovação, Organização, Tranquilidade e Assertividade você vai gostar dos serviços de Aline Nery Conexões e Negócios.
+</p>
+
+            
           </div>
         </section>
       </main>
