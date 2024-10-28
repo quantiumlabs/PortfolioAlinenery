@@ -117,7 +117,7 @@
   top: 300px;
   left: 450px;
   font-size: 48pt;
-  animation: bounce 2s infinite;
+  animation: bounce 3s infinite;
 }
 
 @media (max-width: 768px) {
@@ -142,6 +142,15 @@
     justify-content: center;
     margin-top: 2rem;
   }
+}
+
+.navbar {
+  position: absolute;
+  left: 785px;
+  top: 17px;
+  width: 351px;
+  height: 76px;
+  z-index: 3;
 }
 
 .Oval {
@@ -247,7 +256,7 @@
   transition: all 0.7s ease;
   background-color: #090D10;
   color: white;
-  margin-left: 3rem
+  margin-left: 3rem;
 }
 
 .section:nth-child(2) {
@@ -380,4 +389,75 @@
   width: 1516px;
   height: 2271px;
   opacity: 0.4;
+}
+
+.hidden {
+  opacity: 0;
+  transform: scale(0.5); /* Start smaller for zoom-in */
+}
+
+.visible {
+  opacity: 1;
+  transform: scale(1); /* Full size on visibility */
+  transition: opacity 0.5s ease, transform 1s ease;
+}
+
+.fadeOut {
+  opacity: 0;
+  transform: scale(2); /* Grows while fading out */
+  transition: opacity 0.5s ease, transform 1s ease;
+}
+
+/* Final logo fade-in with zoom-in effect */
+.fadeIn {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* Container for animated elements */
+.logoContainer {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.logoElement {
+  position: absolute;
+  transform-origin: center center; /* Center the zoom effect */
+}
+
+@keyframes morphToLogo {
+  0% {
+    d: path("M50 0 L61 35 L97 35 L68 57 L79 91 L50 70 L21 91 L32 57 L3 35 L39 35 Z");
+  }
+  25% {
+    d: path("M10 80 L40 20 L70 80 M25 50 L55 50");
+  }
+  50% {
+    d: path("M20 90 L50 10 L80 90 M35 60 L65 60");
+  }
+  75% {
+    d: path("M25 100 L50 0 L75 100 M45 50 L55 50");
+  }
+  100% {
+    d: path("M20 80 L50 10 L80 80");
+  }
+}
+
+.fadeInZoom {
+  opacity: 0;
+  transform: scale(0.5); /* Start smaller */
+  animation: fadeInZoom 0.4s forwards ease;
+}
+
+@keyframes fadeInZoom {
+  0% {
+    opacity: 0;
+    transform: scale(0.5); /* Start small */
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1); /* Full size */
+  }
 }
