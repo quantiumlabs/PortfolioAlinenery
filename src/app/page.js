@@ -156,16 +156,71 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.section}>
-          <div 
-            ref={secondSectionRef}
-            className={`${styles.secondSectionContent} ${secondSectionInView ? styles.visible : styles.hidden}`}
-          >
-            <h2>Quem é Aline?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </section>
-      </main>
+          <section ref={secondSectionRef} className={`${styles.section} ${secondSectionInView ? styles.visible : styles.hidden}`}>
+            <div className={styles.secondSectionContent}>
+              <Image
+                src="/Aline2.png"
+                alt="Aline Nery Logo"
+                width={isMobile ? 500 : 1000}
+                height={isMobile ? 150 : 1500}
+                className={styles.Aline2}
+                priority
+              />
+              <h2 className={styles.Title1}>Quem é Aline?</h2>
+              <p className={styles.Paragraph}>
+                Comunicadora de perfil Executor, <strong>Aline Nery</strong> adquiriu ao longo de sua carreira como publicitária e empresária, <strong>larga experiência</strong> no relacionamento com empresários dos mais diversos segmentos.
+                <br /><br />
+                Isso lhe gerou um <strong>networking de alta qualidade</strong> pois passou a ser uma referência de confiança no universo corporativo da região de Sete Lagoas/MG. Uma conexão indicada por Aline Nery acabava sendo aceita pois ela conseguia unir <strong>"quem quer comprar, com quem quer vender"</strong> e assim começou a <strong>Xcalada Empresarial</strong>, uma rodada de negócios com metodologia exclusiva All Play All com erro Zero. Já foram mais de 500 empresas conectadas e milhões de negócios fechados.
+                <br /><br />
+                Exigente na qualidade do serviço que entrega e focada na experiência do seu usuário e cliente, Aline Nery realiza eventos corporativos personalizados como inaugurações, premiações, imersões, congressos, festivais.
+                <br /><br />
+                Se você busca por <strong>Inovação, Organização, Tranquilidade e Assertividade</strong> você vai gostar dos serviços de Aline Nery Conexões e Negócios.
+              </p>
+            </div>
+          </section>
+        </main>
+      ) : (
+        <main className={styles.main}>
+          <section ref={servicosRef} className={styles.section}>
+            <div className={styles.servicosContent}>
+              <div className={`${styles.Oval2}`}></div>
+              <Image
+                src="/Aline3.png"
+                alt="Aline Nery3"
+                width={isMobile ? 200 : 580}
+                height={isMobile ? 300 : 700}
+                className={`${styles.profilePic3}`}
+                priority
+              />
+              <Image
+                src="/searchbar.png"
+                alt="searchbar"
+                width={isMobile ? 200 : 580}
+                height={isMobile ? 300 : 700}
+                className={`${styles.searchbar}`}
+                priority
+              />
+              <Image
+                src="/xcalada.png"
+                alt="xcalada"
+                width={isMobile ? 200 : 580}
+                height={isMobile ? 300 : 700}
+                className={`${styles.xcalada}`}
+                priority
+              />
+
+              <h2 className={styles.xcalada1}>
+                Em apenas uma tarde, conecte-se, apresente-se e expanda sua rede de contatos.
+                Networking com foco, metodologia ágil e tempo cronometrado para otimizar cada encontro.
+              </h2>
+              
+              <a href="https://www.sympla.com.br/rodada-de-negocios-xcalada-empresarial-1__2707786" target="_blank" rel="noopener noreferrer">
+                <button className={styles.button1}>Quero me conectar</button>
+              </a>            
+            </div>
+          </section>
+        </main>
+      )}
     </div>
   );
 }
