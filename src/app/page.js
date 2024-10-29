@@ -2,58 +2,67 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import styles from './page.module.css';
 import { Instagram, Linkedin } from 'lucide-react';
 
 export default function Home() {
-  const [currentSection, setCurrentSection] = useState('home'); 
+  const [currentSection, setCurrentSection] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [animationStep, setAnimationStep] = useState(0);
   const [showRealLogo, setShowRealLogo] = useState(false);
 
-  const { ref: logoRef, inView: logoInView } = useInView({ threshold: 0.5, triggerOnce: true });
-  const { ref: descriptionRef, inView: descriptionInView } = useInView({ threshold: 0.3, triggerOnce: true });
-  const { ref: profileRef, inView: profileInView } = useInView({ threshold: 0.3, triggerOnce: true });
-  const { ref: secondSectionRef, inView: secondSectionInView } = useInView({ threshold: 0.5, triggerOnce: true });
-  
-  const sobreMimRef = useRef(null);
-  const servicosRef = useRef(null);
+  // Intersection Observer hooks for different sections
+  const { ref: logoRef, inView: logoInView } = useInView({
+    threshold: 0.5,
+    triggerOnce: true
+  });
 
-  const handleScrollToSection = (section) => {
-    if (section === 'servicos') {
-      setCurrentSection('servicos');
-    } else {
-      setCurrentSection('home');
-      section.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const { ref: descriptionRef, inView: descriptionInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true
+  });
+
+  const { ref: profileRef, inView: profileInView } = useInView({
+    threshold: 0.3,
+    triggerOnce: true
+  });
+
+  const { ref: secondSectionRef, inView: secondSectionInView } = useInView({
+    threshold: 0.5,
+    triggerOnce: true
+  });
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
+  // Updated logo animation sequence with transition to real logo
   useEffect(() => {
     if (logoInView) {
-      const timer1 = setTimeout(() => setAnimationStep(1), 500);  // Star appears
-      const timer2 = setTimeout(() => setAnimationStep(2), 1000); // Star disappears
-      const timer3 = setTimeout(() => setAnimationStep(3), 1500); // "A" appears
-      const timer4 = setTimeout(() => setAnimationStep(4), 2000); // "A" disappears
-      const timer5 = setTimeout(() => {
-        setAnimationStep(5);
-        setTimeout(() => setShowRealLogo(true), 300); // Final logo appears
-      }, 2500);
-
+      const timer1 = setTimeout(() => setAnimationStep(1), 500); // Star appears
+      const timer2 = setTimeout(() => setAnimationStep(2), 1000); // A appears
+      const timer3 = setTimeout(() => setAnimationStep(3), 1500); // Final animated logo state
+      const timer4 = setTimeout(() => {
+        setAnimationStep(4); // Start fade out
+        setTimeout(() => setShowRealLogo(true), 300); // Show real logo after fade starts
+      }, 2000);
+      
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
         clearTimeout(timer3);
         clearTimeout(timer4);
-        clearTimeout(timer5);
       };
     }
   }, [logoInView]);
@@ -67,85 +76,85 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <nav className={styles.navbar}>
-        <button onClick={() => handleScrollToSection(sobreMimRef)}>Sobre Mim</button>
-        <button onClick={() => handleScrollToSection('servicos')}>Serviços</button>
-      </nav>
+      <main className={styles.main}>
+        <section className={styles.section}>
+          <div className={styles.mainContent}>
+            {/* Logo Container */}
+            <div ref={logoRef} className={styles.logoPic}>
+              <div className={styles.logoContainer}>
+                {/* Animated Logo Elements */}
+                {!showRealLogo && (
+                  <>
+                    <svg
+                      className={`${styles.logoElement} ${animationStep >= 1 ? styles.visible : styles.hidden} ${animationStep === 4 ? styles.fadeOut : ''}`}
+                      viewBox="0 0 100 100"
+                      width={isMobile ? "100" : "200"}
+                      height={isMobile ? "100" : "200"}
+                    >
+                      <path
+                        d="M50 0 L61 35 L97 35 L68 57 L79 91 L50 70 L21 91 L32 57 L3 35 L39 35 Z"
+                        fill="#FF4500"
+                      />
+                    </svg>
 
-      <nav className={styles.socialLinks}>
-        <a href="https://www.instagram.com/alineneryanc?igsh=aXhqdTV4MGFnMmR6" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <Instagram size={24} />
-        </a>
-        <a href="https://www.linkedin.com/in/aline-nery-anc/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <Linkedin size={24} />
-        </a>
-      </nav>
-
-      {currentSection === 'home' ? (
-        <main className={styles.main}>
-          <section ref={sobreMimRef} className={styles.section}>
-            <div className={styles.mainContent}>
-              <div ref={logoRef} className={styles.logoPic}>
-                <div className={styles.logoContainer}>
-                  {!showRealLogo && (
-                    <>
-                      <svg
-                        className={`${styles.logoElement} ${animationStep === 1 ? styles.visible : styles.hidden} ${animationStep === 2 ? styles.fadeOut : ''}`}
-                        viewBox="0 0 100 100"
-                        width={isMobile ? "100" : "880"}
-                        height={isMobile ? "100" : "200"}
-                      >
-                        <path d="M50 0 L61 35 L97 35 L68 57 L79 91 L50 70 L21 91 L32 57 L3 35 L39 35 Z" fill="#FF4500" />
-                      </svg>
-
-                      <svg
-                        className={`${styles.logoElement} ${animationStep === 3 ? styles.visible : styles.hidden} ${animationStep === 4 ? styles.fadeOut : ''}`}
-                        viewBox="0 0 100 100"
-                        width={isMobile ? "100" : "900"}
-                        height={isMobile ? "100" : "200"}
-                      >
-                        <path d="M10 80 L40 20 L70 80 M25 50 L55 50" stroke="#FF4500" strokeWidth="8" fill="none" />
-                      </svg>
-                    </>
-                  )}
-
-                  {showRealLogo && (
-                    <Image
-                      src="/alinelogo.png"
-                      alt="Aline Nery Logo"
-                      width={isMobile ? 450 : 800}
-                      height={isMobile ? 180 : 250}
-                      className={`${styles.realLogo} ${styles.fadeInZoom}`} /* Apply fadeInZoom effect */
-                      priority
-                    />
-                  )}
-                </div>
-              </div>
-
-              <div className={styles.contentWrapper}>
-                <div className={styles.textSection}>
-                  <h1 ref={descriptionRef} className={`${styles.description} ${descriptionInView ? styles.visible : styles.hidden}`}>
-                    Excelência em criar experiências, conectar pessoas e transformar empresas
-                  </h1>
-                  <div className={styles.scrollIndicator}>
-                    <div className={styles.arrow} onClick={() => handleScrollToSection(secondSectionRef)}>↓</div>
-                  </div>
-                </div>
-
-                <div ref={profileRef} className={styles.imageSection}>
-                  <div className={`${styles.Oval} ${profileInView ? styles.visible : styles.hidden}`}></div>
+                    <svg
+                      className={`${styles.logoElement} ${animationStep >= 2 ? styles.visible : styles.hidden} ${animationStep === 4 ? styles.fadeOut : ''}`}
+                      viewBox="0 0 100 100"
+                      width={isMobile ? "100" : "200"}
+                      height={isMobile ? "100" : "200"}
+                    >
+                      <path
+                        d="M10 80 L40 20 L70 80 M25 50 L55 50"
+                        stroke="#FF4500"
+                        strokeWidth="8"
+                        fill="none"
+                      />
+                    </svg>
+                  </>
+                )}
+                
+                {/* Real Logo */}
+                {showRealLogo && (
                   <Image
-                    src="/Aline1.png"
-                    alt="Aline Nery"
-                    width={isMobile ? 200 : 580}
-                    height={isMobile ? 300 : 700}
-                    className={`${styles.profilePic} ${profileInView ? styles.visible : styles.hidden}`}
+                    src="/alinelogo.png"
+                    alt="Aline Nery Logo"
+                    width={isMobile ? 150 : 800}
+                    height={isMobile ? 150 : 300}
+                    className={`${styles.realLogo} ${styles.fadeIn}`}
                     priority
                   />
-                </div>
+                )}
               </div>
             </div>
-          </section>
+            
+            {/* Rest of the component remains the same */}
+            <div className={styles.contentWrapper}>
+              <div className={styles.textSection}>
+                <h1
+                  ref={descriptionRef}
+                  className={`${styles.description} ${descriptionInView ? styles.visible : styles.hidden}`}
+                >
+                  Excelência em criar experiências, conectar pessoas e transformar empresas
+                </h1>
+                <div className={styles.scrollIndicator}>
+                  <div className={styles.arrow}>↓</div>
+                </div>
+              </div>
+              
+              <div ref={profileRef} className={styles.imageSection}>
+                <div className={`${styles.Oval} ${profileInView ? styles.visible : styles.hidden}`}></div>
+                <Image
+                  src="/Aline1.png"
+                  alt="Aline Nery"
+                  width={isMobile ? 400 : 580}
+                  height={isMobile ? 600 : 700}
+                  className={`${styles.profilePic} ${profileInView ? styles.visible : styles.hidden}`}
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
           <section ref={secondSectionRef} className={`${styles.section} ${secondSectionInView ? styles.visible : styles.hidden}`}>
             <div className={styles.secondSectionContent}>
@@ -174,19 +183,44 @@ export default function Home() {
         <main className={styles.main}>
           <section ref={servicosRef} className={styles.section}>
             <div className={styles.servicosContent}>
-              <h2 className={styles.Title1}>Serviços</h2>
-              <p className={styles.Paragraph}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                  reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                   Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
+              <div className={`${styles.Oval2}`}></div>
+              <Image
+                src="/Aline3.png"
+                alt="Aline Nery3"
+                width={isMobile ? 200 : 580}
+                height={isMobile ? 300 : 700}
+                className={`${styles.profilePic3}`}
+                priority
+              />
+              <Image
+                src="/searchbar.png"
+                alt="searchbar"
+                width={isMobile ? 200 : 580}
+                height={isMobile ? 300 : 700}
+                className={`${styles.searchbar}`}
+                priority
+              />
+              <Image
+                src="/xcalada.png"
+                alt="xcalada"
+                width={isMobile ? 200 : 580}
+                height={isMobile ? 300 : 700}
+                className={`${styles.xcalada}`}
+                priority
+              />
+
+              <h2 className={styles.xcalada1}>
+                Em apenas uma tarde, conecte-se, apresente-se e expanda sua rede de contatos.
+                Networking com foco, metodologia ágil e tempo cronometrado para otimizar cada encontro.
+              </h2>
+
+              <a href="https://www.sympla.com.br/rodada-de-negocios-xcalada-empresarial-1__2707786" target="_blank" rel="noopener noreferrer">
+                <button className={styles.button1}>Quero me conectar</button>
+              </a>
             </div>
           </section>
         </main>
-      )}
+      )
     </div>
   );
 }

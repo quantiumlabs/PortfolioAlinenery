@@ -90,14 +90,11 @@
 
 @media (max-width: 768px) {
   .description {
-    position: relative;
-    top: 20rem;
-    left: -50px;
-    width: 318px;
+    position: static;
+    width: 100%;
     height: auto;
-    font-size: 36px;
-    z-index: 3;
-    text-align: left;
+    font-size: 24px;
+    margin-top: 1rem;
   }
 }
 
@@ -120,10 +117,15 @@
   top: 300px;
   left: 450px;
   font-size: 48pt;
-  animation: bounce 3s infinite;
+  animation: bounce 2s infinite;
 }
 
-
+@media (max-width: 768px) {
+  .arrow {
+    top: 2rem;
+    left: 0;
+  }
+}
 
 /* Image Section Styles */
 .imageSection {
@@ -144,11 +146,24 @@
 
 .navbar {
   position: absolute;
-  left: 785px;
+  left: 50%; /* Center the navbar */
+  transform: translateX(-50%);
   top: 17px;
-  width: 351px;
-  height: 76px;
+  width: 100%;
+  max-width: 800px; /* Limit max width */
+  display: flex;
+  justify-content: space-between; /* Space out buttons */
   z-index: 3;
+  transition: flex-direction 0.3s ease; /* Add transition for smooth changes */
+}
+
+.navbar button {
+  background: transparent;
+  border: none;
+  color: #FFFFFF; /* Adjust button color */
+  cursor: pointer;
+  font-size: 16px; /* Adjust button font size */
+  transition: color 0.3s ease; /* Transition for button color */
 }
 
 .Oval {
@@ -163,12 +178,23 @@
   transition: all 0.8s ease;
 }
 
+.Oval2 {
+  position: relative;
+  left: -50rem;
+  width: 800px;
+  height: 1000px;
+  background: rgba(23, 23, 32, 0.7);
+  filter: blur(30px);
+  z-index: 0;
+  border-radius: 50%;
+  transition: all 0.8s ease;
+}
 @media (max-width: 768px) {
   .Oval {
     width: 100%;
     height: 500px;
-    left: 110pt;
-    top: 10pt;
+    right: 0;
+    top: 0;
   }
 }
 
@@ -181,13 +207,21 @@
   transition: all 0.8s ease;
 }
 
+.profilePic3{
+  position: absolute;
+  left: 70px;
+  top: 50px;
+  width: 600px;
+  height: 900px;
+}
+
 @media (max-width: 768px) {
   .profilePic {
-    position: absolute;
-    max-width: 140%;
-    max-height: 130%;
-    top: -150pt;
-    left: 60pt;
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-width: 400px;
     margin: 0 auto;
   }
 }
@@ -236,25 +270,13 @@
 }
 
 @media (max-width: 768px) {
-  .logoContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    padding: 1rem;
-  }
-
-  .logoElement {
-    position: relative;
-    transform: translate(0, 0);
-  }
-
   .logoPic {
-    left: 120px;
-    margin-top: -200px;
-    width: 100%;
-    max-width: 200px;
+    position: absolute;
+    left: 70px;
+    top: 257px;
+    z-index: 1;
     height: auto;
+    margin-top: 2rem;
   }
 }
 
@@ -264,23 +286,13 @@
   margin: 0 auto;
   padding: 4rem 2rem;
   transition: all 0.7s ease;
-  background-color: #090D10;
-  color: white;
-  margin-left: 3rem;
-}
-
-.section:nth-child(2) {
-  background-color: #090D10;
-  color: #FFFFFF;
 }
 
 @media (max-width: 768px) {
   .secondSectionContent {
     padding: 2rem 1rem;
-    background-color: #090D10;
   }
 }
-
 
 /* Footer Styles */
 .footer {
@@ -409,7 +421,7 @@
 @media (max-width: 768px) {
   .Paragraph{
     position: absolute;
-    left: -30px;
+    left: 20px;
     top: 220px;
     width: 388px;
     height: 708px;
@@ -512,3 +524,89 @@
   }
 }
 
+.searchbar {
+  position: absolute;
+  left: 0px;
+  top: 516px;
+  width: 761px;
+  height: 90px;
+
+}
+
+.xcalada {
+  position: absolute;
+  left: 1458px;
+  top: 12px;
+  width: 423px;
+  height: 238px;
+}
+
+.xcalada1 {
+  position: absolute;
+  left: 1069px;
+  top: 374px;
+  width: 778px;
+  height: 373px;
+  color: #ffffff;
+  font-family: Asap;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.button1 {
+  position: absolute;
+  left: 1208px; /* Consider using relative units for responsiveness */
+  top: 631px;
+  width: 500px;
+  height: 81px;
+  background: linear-gradient(135deg, #2e5091, #1e3c72); /* Gradient background */
+  color: white; /* Text color */
+  border: none; /* Remove default border */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 20px; /* Larger font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer; /* Pointer cursor */
+  transition: background 1s ease, transform 0.2s ease; /* Smooth transition for background and transform */
+  display: flex; /* Flex for centering text */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.button1:hover {
+  background: linear-gradient(135deg, #1e3c72, #2e5091); /* Reverse gradient on hover */
+  transform: translateY(-3px); /* Slight lift effect on hover */
+}
+
+.button1:active {
+  transform: translateY(1px); /* Slight press effect on click */
+}
+
+.servicosContent {
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center content */
+  text-align: center; /* Center text */
+  padding: 2rem; /* Add padding */
+}
+
+.servicosContent img {
+  max-width: 100%; /* Ensure images are responsive */
+  height: auto; /* Maintain aspect ratio */
+}
+
+@media (max-width: 768px) {
+  .servicosContent {
+    padding: 1rem; /* Reduce padding on mobile */
+  }
+
+  .servicosContent h2 {
+    font-size: 24px; /* Adjust heading size */
+    margin: 1rem 0; /* Space around heading */
+  }
+
+  .servicosContent .button1 {
+    width: 100%; /* Make button full width */
+    font-size: 18px; /* Adjust button font size */
+  }
+}
