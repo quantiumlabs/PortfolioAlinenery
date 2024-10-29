@@ -130,7 +130,7 @@ export default function Home() {
             {/* Rest of the component remains the same */}
             <div className={styles.contentWrapper}>
               <div className={styles.textSection}>
-                <h1 
+                <h1
                   ref={descriptionRef}
                   className={`${styles.description} ${descriptionInView ? styles.visible : styles.hidden}`}
                 >
@@ -143,11 +143,11 @@ export default function Home() {
               
               <div ref={profileRef} className={styles.imageSection}>
                 <div className={`${styles.Oval} ${profileInView ? styles.visible : styles.hidden}`}></div>
-                <Image 
-                  src="/Aline1.png" 
-                  alt="Aline Nery" 
-                  width={isMobile ? 400 : 580} 
-                  height={isMobile ? 600 : 700} 
+                <Image
+                  src="/Aline1.png"
+                  alt="Aline Nery"
+                  width={isMobile ? 400 : 580}
+                  height={isMobile ? 600 : 700}
                   className={`${styles.profilePic} ${profileInView ? styles.visible : styles.hidden}`}
                   priority
                 />
@@ -213,14 +213,14 @@ export default function Home() {
                 Em apenas uma tarde, conecte-se, apresente-se e expanda sua rede de contatos.
                 Networking com foco, metodologia ágil e tempo cronometrado para otimizar cada encontro.
               </h2>
-              
+
               <a href="https://www.sympla.com.br/rodada-de-negocios-xcalada-empresarial-1__2707786" target="_blank" rel="noopener noreferrer">
                 <button className={styles.button1}>Quero me conectar</button>
-              </a>            
+              </a>
             </div>
           </section>
         </main>
-      )}
+      )
     </div>
   );
 }
