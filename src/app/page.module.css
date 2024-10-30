@@ -88,11 +88,24 @@
   transition: all 0.7s ease;
 }
 
+@media (max-width: 420px) {
+  .description {
+    position: relative;
+    top: 20rem;
+    left: 10rem;
+    width: 318px;
+    height: auto;
+    font-size: 30px;
+    z-index: 3;
+    text-align: left;
+  }
+}
+
 @media (max-width: 768px) {
   .description {
     position: relative;
     top: 20rem;
-    left: -50px;
+    left: -30px;
     width: 318px;
     height: auto;
     font-size: 30px;
@@ -153,6 +166,21 @@
   
   
 }
+
+
+@media (max-width: 431px) {
+  .navbar {
+    position: absolute;
+    left: 10rem;
+    top: 17px;
+    width: 351px;
+    height: 76px;
+    z-index: 3;
+    font-family: 'Asap';
+  }
+}
+
+
 
 @media (max-width: 768px) {
   .navbar {
@@ -302,6 +330,8 @@
   top: 257px;
   z-index: 1;
 }
+
+
 
 @media (max-width: 768px) {
   .logoContainer {
@@ -464,7 +494,7 @@
   .Title1 {
     position: absolute;
     left: 20px;
-    top: 90px;
+    top: 60px;
     width: 355px;
     height: 69px;
     color: #ffffff;
@@ -473,6 +503,9 @@
     font-weight: 600;
   }
 }
+
+
+
 
 .Paragraph {
   position: absolute;
@@ -490,7 +523,7 @@
 @media (max-width: 768px) {
   .Paragraph{
     position: absolute;
-    left: 10px;
+    left: 2px;
     top: 220px;
     width: 388px;
     height: 708px;
@@ -502,6 +535,21 @@
   }
 }
   
+
+@media (max-width: 360px) {
+  .Paragraph{
+    position: absolute;
+    left: 7px;
+    top: 200px;
+    width: 360px;
+    height: 708px;
+    color: #ffffff;
+    font-family: asap;
+    font-size: 18px;
+    font-weight: 200;
+    text-align: left;
+  }
+}
 
 .Aline2 {
   position: absolute;
@@ -521,6 +569,7 @@
     height: 848px; 
   }
 }
+
 
 .hidden {
   opacity: 0;
@@ -655,6 +704,22 @@
   }
 }
 
+@media (max-width: 380px) {
+
+  .xcalada1 {
+    position: relative;
+    left: -80px;
+    top: -300px;
+    width: 200px;
+    height: 100px;
+    color: #ffffff;
+    font-family: Asap;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+  }
+  
+}
 
 
 
@@ -690,6 +755,21 @@
     height: 70px; /* Slightly reduced height for mobile */
     font-size: 16px; /* Slightly smaller font for mobile */
   }
+}
+
+@media (max-width: 431px) {
+  .button1 {
+    position: relative;
+    left: 10px;
+    top: -20px;
+    min-width: 300px;
+    width: 150%; /* Changed from 10rem to percentage */
+    max-width: 300px; /* Added max-width for control */
+    margin: 0 auto; /* Center the button */
+    height: 70px; /* Slightly reduced height for mobile */
+    font-size: 16px; /* Slightly smaller font for mobile */
+  }
+  
 }
 
 .button1:hover {
@@ -751,4 +831,18 @@
     height: 900px;
     margin: 0 auto;
   }
+}
+
+
+
+@media (max-width: 380px) {
+  .profilePic3 {
+    position: relative;
+    left: 9rem;
+    top: 20rem;
+    width: 600px;
+    height: 900px;
+    margin: 0 auto;
+  }
+  
 }
