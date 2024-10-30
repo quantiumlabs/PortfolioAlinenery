@@ -95,7 +95,7 @@
     left: -50px;
     width: 318px;
     height: auto;
-    font-size: 36px;
+    font-size: 30px;
     z-index: 3;
     text-align: left;
   }
@@ -144,24 +144,81 @@
 
 .navbar {
   position: absolute;
-  left: 785px;
+  left: 43%;
   top: 17px;
   width: 351px;
   height: 76px;
   z-index: 3;
+  font-family: 'Asap';
+  
+  
 }
 
 @media (max-width: 768px) {
   .navbar {
     position: absolute;
-    left: 200px;
+    left: 100px;
     top: 17px;
     width: 351px;
     height: 76px;
     z-index: 3;
+    font-family: 'Asap';
   }
 }
 
+
+.navbar-container {
+  position: absolute;
+  top: 10px;
+  left: 40%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 1000;
+  pointer-events: none;
+
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 230px;
+  height: 50px;
+  border-radius: 25px;
+  border: 1px solid #808080;
+  background: rgba(117, 117, 117, 0.47);
+  backdrop-filter: blur(20px);
+  box-shadow: 0px 2px 4px rgba(100, 100, 100, 0.5);
+  pointer-events: auto;
+  padding: 5px 10px;
+  font-family: 'Asap';
+}
+
+.navbar button {
+  background-color: transparent;
+  color: #ffffff;
+  font-family: 'Asap', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 0 6px;
+}
+
+.navbar button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(3px);
+}
+
+.navbar button:focus {
+  background-color: #383838;
+}
 .Oval {
   position: relative;
   right: -50rem;
@@ -197,7 +254,7 @@
     position: absolute;
     max-width: 140%;
     max-height: 130%;
-    top: -150pt;
+    top: -100pt;
     left: 60pt;
     margin: 0 auto;
   }
@@ -248,7 +305,8 @@
 
 @media (max-width: 768px) {
   .logoContainer {
-    display: flex;
+    display: fixed;
+    margin-right: 10rem;
     justify-content: center;
     align-items: center;
     height: auto;
@@ -256,12 +314,16 @@
   }
 
   .logoElement {
-    position: relative;
-    transform: translate(0, 0);
+    position: fixed;
+    max-width: 100px;
+    margin-right: 10rem;
+    transform: translate(10px, -50%);
+    transition: all 0.5s ease;
+
   }
 
   .logoPic {
-    left: 120px;
+    left: 110px;
     margin-top: -200px;
     width: 100%;
     max-width: 200px;
@@ -311,6 +373,14 @@
   color: #FFFFFF;
   text-decoration: none;
   transition: opacity 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .socialLink {
+    position: absolute;
+    top: 10rem
+
+  }
 }
 
 .socialLink:hover {
@@ -532,44 +602,94 @@
 
 }
 
+@media (max-width: 768px) {
+  .searchbar {
+    display: none;
+
+  }
+}
+
 .xcalada {
-  position: absolute;
-  left: 1458px;
+  position: relative;
+  left: 600px;
   top: 12px;
   width: 423px;
   height: 238px;
 }
 
 .xcalada1 {
-  position: absolute;
-  left: 1069px;
-  top: 374px;
+  position: relative;
+  left: 450px;
+  top: 100px;
   width: 778px;
   height: 373px;
   color: #ffffff;
   font-family: Asap;
   font-size: 36px;
   font-weight: 600;
+  text-align: left;
 }
 
+@media (max-width: 768px) {
+  .xcalada {
+    position: absolute;
+    left: 1px;
+    top:  40px;
+    width: 800px;
+    height: 100px;
+    animation: fadeInZoom 0.4s forwards ease;
+
+  }
+
+  .xcalada1 {
+    position: relative;
+    left: -100px;
+    top: -350px;
+    width: 200px;
+    height: 100px;
+    color: #ffffff;
+    font-family: Asap;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: left;
+  }
+}
+
+
+
+
 .button1 {
-  position: absolute;
-  left: 1208px; /* Consider using relative units for responsiveness */
-  top: 631px;
+  position: relative;
+  left: 430px;
+  top: 50px;
   width: 500px;
   height: 81px;
-  background: linear-gradient(135deg, #2e5091, #1e3c72); /* Gradient background */
-  color: white; /* Text color */
-  border: none; /* Remove default border */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 20px; /* Larger font size */
-  font-weight: bold; /* Bold text */
-  cursor: pointer; /* Pointer cursor */
-  transition: background 1s ease, transform 0.2s ease; /* Smooth transition for background and transform */
-  display: flex; /* Flex for centering text */
-  align-items: center; /* Center vertically */
-  justify-content: center; /* Center horizontally */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+  background: linear-gradient(135deg, #2e5091, #1e3c72);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 1s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .button1 {
+    position: relative;
+    left: 10px;
+    top: -100px;
+    min-width: 300px;
+    width: 150%; /* Changed from 10rem to percentage */
+    max-width: 300px; /* Added max-width for control */
+    margin: 0 auto; /* Center the button */
+    height: 70px; /* Slightly reduced height for mobile */
+    font-size: 16px; /* Slightly smaller font for mobile */
+  }
 }
 
 .button1:hover {
@@ -587,6 +707,9 @@
   align-items: center; /* Center content */
   text-align: center; /* Center text */
   padding: 2rem; /* Add padding */
+  width: 100%;
+  position: relative;
+
 }
 
 .servicosContent img {
@@ -612,8 +735,20 @@
 
 .profilePic3{
   position: absolute;
-  left: 70px;
+  left: 4rem;
   top: 50px;
   width: 600px;
   height: 900px;
+}
+
+
+@media (max-width: 768px) {
+  .profilePic3 {
+    position: relative;
+    left: 9rem;
+    top: 13rem;
+    width: 600px;
+    height: 900px;
+    margin: 0 auto;
+  }
 }
