@@ -24,9 +24,10 @@ export default function Home() {
   const handleScrollToSection = (section) => {
     if (section === 'servicos') {
       setCurrentSection('servicos');
+      servicosRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       setCurrentSection('home');
-      section.current?.scrollIntoView({ behavior: 'smooth' });
+      sobreMimRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -34,7 +35,25 @@ export default function Home() {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     handleResize();
     window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    const handleScroll = () => {
+      const threshold = 0.5;
+      if (secondSectionRef.current) {
+        const sectionPosition = secondSectionRef.current.getBoundingClientRect();
+        if (sectionPosition.top < window.innerHeight * threshold) {
+          setCurrentSection('servicos');
+        } else {
+          setCurrentSection('home');
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -92,8 +111,8 @@ export default function Home() {
                       <svg
                         className={`${styles.logoElement} ${animationStep === 1 ? styles.visible : styles.hidden} ${animationStep === 2 ? styles.fadeOut : ''}`}
                         viewBox="0 0 100 100"
-                        width={isMobile ? "100" : "880"}
-                        height={isMobile ? "100" : "200"}
+                        width={isMobile ? "-1500" : "880"}
+                        height={isMobile ? "200" : "200"}
                       >
                         <path d="M50 0 L61 35 L97 35 L68 57 L79 91 L50 70 L21 91 L32 57 L3 35 L39 35 Z" fill="#FF4500" />
                       </svg>
@@ -101,8 +120,8 @@ export default function Home() {
                       <svg
                         className={`${styles.logoElement} ${animationStep === 3 ? styles.visible : styles.hidden} ${animationStep === 4 ? styles.fadeOut : ''}`}
                         viewBox="0 0 100 100"
-                        width={isMobile ? "100" : "900"}
-                        height={isMobile ? "100" : "200"}
+                        width={isMobile ? "200" : "900"}
+                        height={isMobile ? "200" : "200"}
                       >
                         <path d="M10 80 L40 20 L70 80 M25 50 L55 50" stroke="#FF4500" strokeWidth="8" fill="none" />
                       </svg>
@@ -114,7 +133,7 @@ export default function Home() {
                       src="/alinelogo.png"
                       alt="Aline Nery Logo"
                       width={isMobile ? 450 : 800}
-                      height={isMobile ? 180 : 250}
+                      height={isMobile ? 155 : 250}
                       className={`${styles.realLogo} ${styles.fadeInZoom}`} /* Apply fadeInZoom effect */
                       priority
                     />
@@ -203,7 +222,7 @@ export default function Home() {
               <h2 className={styles.xcalada1}>Em apenas uma tarde, conecte-se, apresente-se e expanda sua rede de contatos.
               Networking com foco, metodologia ágil e tempo cronometrado para otimizar cada encontro.</h2>
               
-              <a href="https://www.sympla.com.br/rodada-de-negocios-xcalada-empresarial-1__2707786" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.sympla.com.br/rodada-de-negocios-xcalada-empresarial-1__2707786" target="_blank" rel="noopener noreferrer" className='aref'>
                 <button className={styles.button1}>Quero me conectar</button>
                 </a>
             </div>
