@@ -111,8 +111,8 @@ export default function Home() {
                       <svg
                         className={`${styles.logoElement} ${animationStep === 1 ? styles.visible : styles.hidden} ${animationStep === 2 ? styles.fadeOut : ''}`}
                         viewBox="0 0 100 100"
-                        width={isMobile ? "-1500" : "880"}
-                        height={isMobile ? "200" : "200"}
+                        width={isMobile ? "200" : "2000"}
+                        height={isMobile ? "200" : "150"}
                       >
                         <path d="M50 0 L61 35 L97 35 L68 57 L79 91 L50 70 L21 91 L32 57 L3 35 L39 35 Z" fill="#FF4500" />
                       </svg>
@@ -120,24 +120,23 @@ export default function Home() {
                       <svg
                         className={`${styles.logoElement} ${animationStep === 3 ? styles.visible : styles.hidden} ${animationStep === 4 ? styles.fadeOut : ''}`}
                         viewBox="0 0 100 100"
-                        width={isMobile ? "200" : "900"}
-                        height={isMobile ? "200" : "200"}
+                        width={isMobile ? "200" : "2000"}
+                        height={isMobile ? "200" : "150"}
                       >
                         <path d="M10 80 L40 20 L70 80 M25 50 L55 50" stroke="#FF4500" strokeWidth="8" fill="none" />
                       </svg>
                     </>
                   )}
-
-                  {showRealLogo && (
-                    <Image
+                  
+                  <Image
                       src="/alinelogo.png"
                       alt="Aline Nery Logo"
-                      width={isMobile ? 450 : 800}
-                      height={isMobile ? 155 : 250}
+                      width={isMobile ? 400 : 800}
+                      height={isMobile ? 140 : 250}
                       className={`${styles.realLogo} ${styles.fadeInZoom}`} /* Apply fadeInZoom effect */
                       priority
                     />
-                  )}
+                    
                 </div>
               </div>
 
