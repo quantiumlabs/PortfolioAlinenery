@@ -807,7 +807,7 @@
 @media (max-width: 431px) {
   .button1 {
     position: relative;
-    left: 10px;
+    left: 3px;
     top: -100px;
     min-width: 300px;
     width: 150%; /* Changed from 10rem to percentage */
